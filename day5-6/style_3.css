@@ -1,0 +1,28 @@
+h1 {
+    background-color: rgb(80, 78, 78);
+    height:80px;
+    width: 100%;
+    font-size: 30px;
+    border: 2px solid rgba(0,0,0,0.5);
+}
+div {
+    height:100px;
+    width:20%;
+    background-color:rgb(189, 184, 184);
+    border: 2px solid rgba(0,0,0,0.5);
+    float: left;
+}
+body {
+    border: 2px solid rgba(0,0,0,0.5);
+    max-height: 900px;
+}
+div2 {
+    height: 100px;
+    width: 79%;
+    border: 2px solid rgba(0,0,0,0.5);
+    float: right;
+}
+div2 p {
+    display: inline-block;
+}
+.span2 { grid-column: auto / span 2;}
