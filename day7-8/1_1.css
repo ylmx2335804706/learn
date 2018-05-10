@@ -1,0 +1,104 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.de1 {
+    background-color: dimgrey;
+    width: 100%;
+    height: 7%;
+}
+.ff{
+    font-size: 40px;
+}
+.dd1 { 
+    width: 960px;
+    height: 10%;
+    margin: 0 auto;
+}
+dt{
+    float: right;
+    margin: 10px;
+}
+.de2{
+    position: absolute;
+    top: 0;
+    right: 510px;
+}
+.dd2{
+    clear: both;
+    background-color: forestgreen;
+    width: 100%;
+    height: 20%;
+}
+.dd3 {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    border-bottom: 1px solid rgb(223, 209, 209);
+}
+.de3{
+    position: absolute;
+    margin-left: 510px;
+    margin-bottom: 0;
+}
+p1{
+    margin-right: 10px;
+    border: 1px solid rgb(123, 122, 124);
+    bottom: 0;
+    font-size: 30px;
+    border-radius: 10px;
+}
+.dd4 {
+    height: 50%;
+    padding: 0 510px;
+    overflow: hidden;
+}
+.middle{
+    width: 100%;
+    height: 50%;
+    background-color: rgb(254, 254, 255);
+    float:left;
+    display: flex;
+    justify-content: space-between;
+}
+.left{ 
+    width: 510px;
+    height: 50%;
+    background-color: rgb(254, 254, 255);
+    float:left;
+    margin-left: -100%;
+    position: relative; 
+    left: -510px;
+}
+.right{
+    width: 510px;
+    height: 50%;
+    background-color: rgb(254, 254, 255);
+    float:left;
+    margin-left: -510px;
+    position: relative; 
+    right: -510px;
+}
+.ff1, .ff3 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.ff2{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+button {
+    flex: 1 100px;
+    padding:60px;
+    margin: 5px;
+    font-size: 18px;
+}
+.footer{
+    clear: both;
+    height: 20%;
+    width: 100%;
+    background-color: rgb(123, 122, 124);
+}
