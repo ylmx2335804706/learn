@@ -1,0 +1,27 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input id="name" type="text">    
+        <button id="submit-btn">Submit</button>
+    </body>
+    <script>
+    var btn = document.getElementById("submit-btn");
+            function output() {
+                console.log(document.getElementById("name").value);
+            }
+            // 当点击按钮 submit-btn 时，在console中输出 name 中的内容
+            btn.onclick = output;
+            function _key() {
+                // 在输入过程中，如果按回车键，则同样执行上一条的需求
+                if (event.keyCode == 13) {
+                    output();
+                }
+                // 在输入过程中，如果按 ESC 键，则把输入框中的内容清空
+                if (event.keyCode == 27) {
+                    document.getElementById("name").value = "";
+                }
+            }
+    </script>
+</html>

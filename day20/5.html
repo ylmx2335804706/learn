@@ -1,0 +1,26 @@
+<html>
+    <head>
+            <meta charset="utf-8">
+            <title>css sprite</title>
+            <link rel="stylesheet" href="5.css" type="text/css">
+    </head>
+    <body>
+        <div class="one"></div>
+        <script>
+            var num = 0;
+            var first = document.querySelector(".one");
+            function count(){
+                num-=480;
+                first.style.backgroundPositionY = num + "px";  //图片的纵坐标，（0，0）开始 第二个为（-0，-480）
+                if(num<=-7680){
+                   clearInterval(flag);
+            }
+            }
+            window.onload = function(){            //窗口加载执行
+                first.style.backgroundPositionY = num + "px";
+                flag = setInterval(count,100);   //每100mm自动执行count函数
+            }
+
+        </script>
+    </body>
+</html>
