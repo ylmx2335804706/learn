@@ -1,0 +1,53 @@
+<html>
+ <head>
+
+ </head>
+ <body>
+        <input id="stack-input" type="text">
+        <p id="stack-cont">栈内容：applelt;-pear</p>    
+        <button id="push-btn">进栈</button>
+        <button id="pop-btn">退栈</button>
+        <button id="font-btn">打印栈顶元素内容</button>
+        <button id="empty-btn">判断栈是否为空</button> 
+        <script> 
+        //栈顶对应数组中第一个元素     
+        var stack = ["apple", "pear"];
+   
+    var input = document.getElementById("stack-input");
+    var cont = document.getElementById("stack-cont");
+    var btnPush = document.getElementById("push-btn");
+    var btnPop = document.getElementById("pop-btn");
+    var btnFont = document.getElementById("font-btn");
+    var btnEmpty = document.getElementById("empty-btn");
+    function printf() {
+        cont.innerHTML = "栈内容：" + stack.join("<-");
+        }
+    btnPush.onclick = function() {
+        stack.unshift(input.value);
+            printf();
+    }
+    btnPop.onclick = function(){
+        stack.shift();
+        printf();
+    }
+    btnFont.onclick = function(){
+        var stackL = stack.length;
+        if(stackL>0){
+        cont.innerHTML = stack[0];
+        }
+        else{
+            cont.innerHTML = "栈为空！";
+        }
+    }
+    btnEmpty.onclick = function(){
+        var stackL = stack.length;
+        if(stackL>0){
+        cont.innerHTML = "栈高为："+stackL;
+        }
+        else{
+            cont.innerHTML = "栈为空！";
+        }
+    }
+    </script>
+ </body>   
+</html>

@@ -1,0 +1,53 @@
+<html>
+ <head>
+
+ </head>
+ <body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>    
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+    
+    <script>
+        //队头对应数组中第一个元素
+    var queue = ["apple", "pear"];
+    var input = document.getElementById("queue-input");
+    var cont = document.getElementById("queue-cont");
+    var btnIn = document.getElementById("in-btn");
+    var btnOut = document.getElementById("out-btn");
+    var btnFont = document.getElementById("font-btn");
+    var btnEmpty = document.getElementById("empty-btn");
+    function printf() {
+        cont.innerHTML = "队列内容：" + queue.join(" <-");
+        }
+    btnIn.onclick = function() {
+            queue.push(input.value);
+            printf();
+    }
+    btnOut.onclick = function(){
+        queue.shift();
+        printf();
+    }
+    btnFont.onclick = function(){
+        var queueL = queue.length;
+        if(queueL>0){
+        cont.innerHTML = queue[0];
+        }
+        else{
+            cont.innerHTML = "数组为空！";
+        }
+    }
+    btnEmpty.onclick = function(){
+        var queueL = queue.length;
+        if(queueL>0){
+        cont.innerHTML = "数组长度为:"+queueL;
+        }
+        else{
+            cont.innerHTML = "数组为空！";
+        }
+    }
+    </script>
+ </body>   
+</html>

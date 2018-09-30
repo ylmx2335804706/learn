@@ -1,0 +1,90 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+
+
+
+        //1.
+        var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+                    //数字排序
+                    function xdaod(a,b){
+                return a - b;
+            }
+            function ddaox(a,b){
+                return b - a;
+            }
+        arr.sort(xdaod);
+        console.log("从小到大："+arr);
+        arr.sort(ddaox);
+        console.log("从大到小："+arr);
+
+        //2.
+        var arr1 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+        
+            //字符排序
+function adaoz(a, b) {
+  if (a < b ) {           // 按某种排序标准进行比较, a 小于 b
+    return -1;
+  }
+  if (a > b ) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+function zdaoa(a, b) {
+  if (a < b ) {           // 按某种排序标准进行比较, a 小于 b
+    return 1;
+  }
+  if (a > b ) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+}
+        arr1.sort(adaoz);
+        console.log("从小到大："+arr1);
+        arr1.sort(zdaoa);
+        console.log("从大到小："+arr1);
+
+        //3.
+        var arr2 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+        //二维数组排序
+function xdaod2(a,b){
+    return b[1] - a[1];
+
+}
+        arr2.sort(xdaod2);
+        console.log("从大到小："+arr2);
+
+        //4.
+        var arr3 = [
+    {
+        id: 1,
+        name: 'candy',
+        value: 40
+    }, {
+        id: 2,
+        name: 'Simon',
+        value: 50
+    }, {
+        id: 3,
+        name: 'Tony',
+        value: 45
+    }, {
+        id: 4,
+        name: 'Annie',
+        value: 60
+    }];
+    function sotA(a, b){ 
+        return a.value - b.value;
+        }
+    arr3.sort(sotA);
+console.log(arr3);//这里不能添加字符，懵逼
+
+    </script>
+    </body>
+</html>
