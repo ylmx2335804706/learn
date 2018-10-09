@@ -1,0 +1,200 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+            <select id="year-select"></select>
+                
+                <select id="month-select"></select>
+                
+                <select id="day-select"></select>
+                
+                <select id="hour-select"></select>
+                
+                <select id="minite-select"></select>
+                
+                <select id="second-select"></select>
+                
+                <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+                
+        <script>
+            var resultW = document.getElementById("result-wrapper");
+            var yearS = document.getElementById("year-select");
+            var mouthS = document.getElementById("month-select");
+            var dayS = document.getElementById("day-select");
+            var hourS = document.getElementById("hour-select");
+            var mininteS = document.getElementById("minite-select");
+            var secondS = document.getElementById("second-select");
+//页面加载时生成下拉列表
+window.onload =function kaishi (){
+            var a = 33;
+            var b = 12;
+            var c = 60;
+            var d = 24;
+            //年
+            for(var i =0;i<a;i++){
+            var option1 = document.createElement('option');
+            yearS.appendChild(option1);
+            option1.innerHTML = (2000+i);
+            }
+            //月
+            for(var i =1;i<=b;i++){
+            var option1 = document.createElement('option');
+            mouthS.appendChild(option1);
+            i = checkTime(i);
+            option1.innerHTML = i;
+            }
+            //小时
+            for(var i =0;i<=d;i++){
+            var option1 = document.createElement('option');
+            hourS.appendChild(option1);
+            i = checkTime(i);
+            option1.innerHTML = i;
+            }
+            //分
+            for(var i =0;i<=c;i++){
+            var option1 = document.createElement('option');
+            mininteS.appendChild(option1);
+            i = checkTime(i);
+            option1.innerHTML = i;
+            }
+            //秒
+            for(var i =0;i<=c;i++){
+            var option1 = document.createElement('option');
+            secondS.appendChild(option1);
+            i = checkTime(i);
+            option1.innerHTML = i;
+            }
+           
+}
+//添加下拉列表内容函数
+function tianjia(b){
+    for(var i =1;i<=b;i++){
+    var option1 = document.createElement('option');
+            dayS.appendChild(option1);
+            i = checkTime(i);
+            option1.innerHTML = i;
+        }
+}
+//星期
+function xingqiZ(){
+    var yearS1 = yearS.selectedIndex;
+    var mouthS1 = mouthS.selectedIndex;
+    var dayS1 = dayS.selectedIndex;
+                var d=new Date((2000+yearS1),mouthS1,(dayS1+1));
+                var weekday=new Array(7)
+                weekday[0]="星期日"
+                weekday[1]="星期一"
+                weekday[2]="星期二"
+                weekday[3]="星期三"                 
+                weekday[4]="星期四"
+                weekday[5]="星期五"
+                weekday[6]="星期六"
+                var xingqi = weekday[d.getDay()];
+                return xingqi;
+            }
+//加零函数
+function checkTime(i){
+                if(i<10){
+                    i = "0"+i;
+                }
+                return i;
+            }
+//点击选日期时，根据年月生成天数
+mouthS.onclick = function(){
+    dayS.length = 0;//清空列表内容
+    var yearS1 = yearS.selectedIndex;
+    var mouthS1 = mouthS.selectedIndex;
+if(((yearS1+2000)%4 == 0&&(yearS1+2000)%100 !== 0)||(yearS1+2000)%400 == 0){ // 闰年 = ture ； 1、能整除4且不能整除100 2、能整除400
+    if(mouthS1 == 0||mouthS1 == 2||mouthS1 == 4||mouthS1 == 6||mouthS1 == 7||mouthS1 == 9||mouthS1 == 11){
+        var b = 31;
+        tianjia(b);
+            shuchu();
+    } 
+    if(mouthS1 == 1){
+        var b = 29;
+        tianjia(b);
+            shuchu();
+    }
+    if(mouthS1 == 3||mouthS1 == 5||mouthS1 == 8||mouthS1 == 10){
+        var b = 30;
+        tianjia(b);
+            shuchu();
+    }
+
+}
+else{
+    if(mouthS1 == 0||mouthS1 == 2||mouthS1 == 4||mouthS1 == 6||mouthS1 == 7||mouthS1 == 9||mouthS1 == 11){
+        var b = 31;
+        tianjia(b);
+            shuchu();
+    } 
+    if(mouthS1 == 1){
+        var b = 28;
+        tianjia(b);
+            shuchu();
+    }
+    if(mouthS1 == 3||mouthS1 == 5||mouthS1 == 8||mouthS1 == 10){
+        var b = 30;
+        tianjia(b);
+            shuchu();
+    }
+}
+}
+
+yearS.onclick = function (){
+                shuchu();
+            }
+dayS.onclick = function (){
+                shuchu();
+            }
+hourS.onclick = function (){
+    shuchu();
+}
+mininteS.onclick = function (){
+    shuchu();
+}
+secondS.onclick = function (){
+    shuchu();
+}
+//显示
+function shuchu(){
+    var yearS1 = yearS.selectedIndex;
+    var mouthS1 = mouthS.selectedIndex;
+    var dayS1 = dayS.selectedIndex;
+    var hourS1 = hourS.selectedIndex;
+    var mininteS1 = mininteS.selectedIndex;
+    var secondS1 = secondS.selectedIndex;
+    hourS1 = checkTime(hourS1);
+    mininteS1 = checkTime(mininteS1);
+    secondS1 = checkTime(secondS1);
+
+var myDate=new Date()
+var nowT = myDate.getTime();//1970到现在的毫秒数
+ //月份是实际数字减1
+ var jisuanT = (new Date((2000+yearS1), mouthS1, (dayS1+1), hourS1, mininteS1, secondS1)).getTime(); //1970.1.1到设置时间之间的毫秒数
+  
+ // 获取差值，如果指定日期早于现在，则为负数
+ var chaT = jisuanT - nowT;
+
+ if(chaT>0){
+     var wenT = "还有:";
+ }
+ else{
+     var wenT = "过去了:";
+ }
+ // 求绝对值，获取相差的时间
+ chaT = Math.abs(chaT);
+
+ // 转换时间
+ var jieguoT = Math.floor(chaT / (3600 * 24 * 1e3));
+ var jieguoX = Math.floor(chaT / (3600 * 1e3));
+ var jieguoF = Math.floor(chaT / (60 * 1e3));
+    resultW.innerHTML = "现在距离 "+(2000+yearS1)+"年"+(mouthS1+1)+"月"+(dayS1+1)+"日"+xingqiZ()+" "+hourS1+":"+mininteS1+":"+secondS1+"  "+wenT+jieguoT+"天"+jieguoX+"小时"+jieguoF+"分"+chaT+"毫秒";
+}
+            
+ 
+        </script>
+        
+    </body>
+</html>

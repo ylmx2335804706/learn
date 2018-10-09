@@ -1,0 +1,58 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <p id = "shijian1">a</p>
+        <p id = "shijian2">a</p>
+        <script>
+            var putA = document.getElementById("shijian1");
+            var putB = document.getElementById("shijian2");
+        function shizhong(){
+            var dateA =new Date(); 
+            var nian = dateA.getFullYear();
+            var yue = dateA.getMonth();
+            var ri = dateA.getDate();
+            var shi = dateA.getHours();
+            var fen = dateA.getMinutes();
+            var miao = dateA.getSeconds();
+            miao = checkTime(miao);
+            yue = checkTime(yue+1);
+            ri = checkTime(ri);
+            putA.innerHTML = nian+"年"+yue+"月"+ri+"日"+xingqiZ()+" "+shi+":"+fen+":"+miao;
+            putB.innerHTML = nian+"-"+yue+"-"+ri+xingqiZ()+" "+shi+":"+fen+":"+miao+" "+sxw(shi);
+            function checkTime(i){
+                if(i<10){
+                    i = "0"+i;
+                }
+                return i;
+            }
+            function xingqiZ(){
+                var d=new Date();
+                var weekday=new Array(7);
+                weekday[0]="星期日"
+                weekday[1]="星期一"
+                weekday[2]="星期二"
+                weekday[3]="星期三"                 
+                weekday[4]="星期四"
+                weekday[5]="星期五"
+                weekday[6]="星期六"
+                var xingqi = weekday[d.getDay()];
+                return xingqi;
+            }
+            function sxw(shi){
+                var str;
+                if(shi>12){
+                    str = "PM";
+                }
+                else{
+                    str = "AM";
+                }
+                return str ;
+            }
+            var t = setTimeout(shizhong,1000); //循环调用
+        }
+        shizhong();
+        </script>
+    </body>
+</html>
