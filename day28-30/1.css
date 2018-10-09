@@ -1,0 +1,10 @@
+li {
+    width: 171px;
+    border: 1px solid bisque;
+    background-color: rgb(135, 212, 223);
+}
+ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}

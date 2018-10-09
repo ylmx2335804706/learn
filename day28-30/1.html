@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="1.css" type="text/css">
+    </head>
+    <body>
+            <div class="wrapper">
+                    <input id="email-input" type="text" >
+                    <ul id="email-sug-wrapper" class="email-sug"></ul>
+                </div>
+        <script>
+            var inputA = document.getElementById("email-input");
+            var sugWrapper = document.getElementById("email-sug-wrapper");
+            var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+            var szChang = postfixList.length;
+            var ulA = document.getElementsByTagName("li");
+            var ulChang = ulA.length;
+            var keyChange = 0;
+            var keyChangeA = 5;
+            //当input的值发生改变触发
+            inputA.oninput = function inputChange(){
+                var inputB = neirong();
+                var inputC = huoqu();
+                if(inputC.length > 0 ){  //有输入时显示
+                    sugWrapper.style.cssText="display: block;";
+                    
+                }
+                else{
+                    sugWrapper.style.cssText="display: none;";
+                    
+                }
+                for(var i in ulA){
+                    ulA[i].innerHTML = inputB[i];
+                    if(ulA[i].innerHTML == ""){ //将不符合的提示都隐藏了
+                        ulA[i].style.cssText = "display: none;";
+                    }
+                }
+            }
+            //获取用户输入
+            function huoqu(){
+                var inputB = inputA.value;
+                var inputC = inputB.trim();//2.用浏览器内部转换器实现html解码*///1.首先动态创建一个容器标签元素，如DIV
+            var temp = document.createElement("div");//2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+            temp.innerHTML = inputC;//3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+            }
+            //返回生成的提示内容
+            function neirong(){
+                var inputC = huoqu();
+                var inputB = inputC.length;
+                var postfixListA = new Array();
+                var inputZ = inputC.indexOf("@");
+                if(inputZ !== -1){
+                    if(inputZ == inputB-1){
+                        for(var i = 0; i < szChang;i++){
+                            postfixListA[i] = inputC + postfixList[i];
+                        }
+                    }
+                    else{
+                        for(var i = 0; i < szChang;i++){
+                            var inputD = inputC.slice(inputB-1);
+                            var inputF = inputC.slice(inputB-3);
+                            var inputE = postfixList[i].slice(0,1);
+                            var inputG = postfixList[i].slice(0,3);
+                            if(inputD === inputE||inputF === inputG){
+                            postfixListA[i] = inputC.slice(0,inputZ+1) + postfixList[i];
+                            }
+                            else{
+                                postfixListA[i] = "";
+                            }
+                        }
+                    }
+                    
+                }
+                else{
+                    for(var i = 0; i < szChang;i++){
+                    　　　　var inputS = inputC + "@"; //没有输入@时，帮忙加一个
+                            postfixListA[i] = inputS + postfixList[i];
+                        }
+                }
+                return postfixListA;
+            }
+            //加载页面触发
+            window.onload = function tianjia(){
+                for(var i = 0;i < szChang;i++){
+                var liA = document.createElement("li");
+                sugWrapper.appendChild(liA);
+            }
+            sugWrapper.style.cssText="display: none;";
+            }
+            //点击事件 ，事件委托
+            sugWrapper.onclick = function (event){
+                var e = event||window.event;
+                var source = e.target||e.srcElement; //2.用浏览器内部转换器实现html解码//1.首先动态创建一个容器标签元素，如DIV
+            var temp = document.createElement("div");//2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+            temp.innerHTML = source.innerHTML;       //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+                if(source.nodeName.toLowerCase() == "li"){
+                    var inputB = output;
+                    inputA.value = inputB;
+                    sugWrapper.style.cssText="display: none;";
+                }
+            }
+            //移入事件
+            sugWrapper.onmouseover = function (event){
+                var e = event||window.event;
+                var source = e.target||e.srcElement;//获取触发事件的元素
+                if(source.nodeName.toLowerCase() == "li"){
+                   source.style.cssText = "background-color: chartreuse;";
+                }
+                
+            }
+            //移出事件
+            sugWrapper.onmouseout = function (event){
+                var e = event||window.event;
+                var source = e.target||e.srcElement;//获取触发事件的元素
+                if(source.nodeName.toLowerCase() == "li"){
+                   source.style.cssText = "background-color: rgb(135, 212, 223);";
+                }
+                
+            }
+            //选中函数
+            function xuanZhong(a){
+                for(var i = 0;i < 5; i++ ){  //for in 不能用
+                    ulA[i].style.cssText = "background-color: rgb(135, 212, 223);";
+                }
+                ulA[a].style.cssText = "background-color: chartreuse;";
+            }
+            //键盘事件
+            inputA.onkeyup = function(event){
+                if(event.keyCode === 38){//箭头上
+                    ulA[0].style.cssText = "background-color: chartreuse;";
+                    xuanZhong(keyChangeA-1);
+                    keyChangeA--;
+                    if(keyChangeA === 0){
+                    keyChangeA = 5;
+                    }
+                }
+                else if(event.keyCode === 40){//箭头下
+                    ulA[0].style.cssText = "background-color: chartreuse;";
+                    xuanZhong(keyChange);
+                    keyChange++;
+                    if(keyChange === 5){
+                    keyChange = 0;
+                    }
+                }
+                else if(event.keyCode === 13){ //enter键
+                    for(var i = 0;i < 5;i++){
+                        if(ulA[i].style.backgroundColor == "chartreuse"){
+                            var inputB =ulA[i].innerHTML;
+                            inputA.value = inputB;
+                            sugWrapper.style.cssText="display: none;";
+                        }
+                    }
+                }
+                
+            }
+            // 
+
+        </script>
+        
+    </body>
+</html>
